@@ -18,5 +18,26 @@ public class MaxTest {
 		Max maxim = new Max();
 		int result = maxim.max(2, 1);
 		assertThat(result, is(2));
-		}	
+		}
+
+	@Test
+	public void whenFirstGreaterSecondAndThird() {
+		Max maxim = new Max();
+		int result = maxim.maxofthree(8, 5, 2);
+		assertThat(result, is(8));
+	}
+
+	@Test
+	public void whenSecondGreterFirstAndThird() {
+		Max maxim = new Max();
+		int result = maxim.maxofthree(2, 8, 5);
+		assertThat(result, is(8));
+	}
+
+	@Test
+	public void whenThirdGreaterFirstAndSecond() {
+		Max maxim = new Max();
+		int result = maxim.maxofthree(2, 5, 8);
+		assertThat(result, is(8));
+	}
 }
