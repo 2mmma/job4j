@@ -28,7 +28,7 @@ public class MaxTest {
 	}
 
 	@Test
-	public void whenSecondGreterFirstAndThird() {
+	public void whenSecondGreaterFirstAndThird() {
 		Max maxim = new Max();
 		int result = maxim.maxofthree(2, 8, 5);
 		assertThat(result, is(8));
