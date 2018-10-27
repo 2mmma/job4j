@@ -8,6 +8,7 @@ import static org.junit.Assert.*;
 /**
  * @author tumen.garmazhapov (gtb-85@yandex.ru)
  * @since 10.2018
+ * @version 2.0
  */
 public class PaintTest {
 
