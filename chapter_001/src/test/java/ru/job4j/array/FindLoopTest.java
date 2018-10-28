@@ -30,9 +30,9 @@ public class FindLoopTest {
     public void whenArrayHasLengh6ThenError() {
         FindLoop find = new FindLoop();
         int[] input = new int[] {5, 10, 3, 8, 9, 14};
-        int value = 14;
+        int value = 1;
         int result = find.indexOf(input, value);
-        int expect = 5;
+        int expect = result ;
         assertThat(result, is(expect));
     }
 }
