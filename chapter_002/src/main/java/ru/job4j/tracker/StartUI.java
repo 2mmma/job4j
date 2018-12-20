@@ -9,6 +9,13 @@ package ru.job4j.tracker;
 public class StartUI {
 
     /**
+     * Запускт программы.
+     * @param args
+     */
+    public static void main(String[] args) {
+        new StartUI(new ConsoleInput(), new Tracker()).init(); }
+
+    /**
      * Константа меню для добавления новой заявки.
      */
     private static final String ADD = "0";
@@ -31,12 +38,12 @@ public class StartUI {
     /**
      * Константа меню для добавления новой заявки.
      */
-    private static final String FINDbyID = "4";
+    private static final String FINDBYID = "4";
 
     /**
      * Константа меню для добавления новой заявки.
      */
-    private static final String FINDbyNAME = "5";
+    private static final String FINDBYNAME = "5";
 
     /**
      * Константа для выхода из цикла.
@@ -79,9 +86,9 @@ public class StartUI {
                 this.editItem();
             } else if (DELETE.equals(answer)) {
                 this.deleteItem();
-            } else if (FINDbyID.equals(answer)) {
+            } else if (FINDBYID.equals(answer)) {
                 this.findByIdItem();
-            } else if (FINDbyNAME.equals(answer)) {
+            } else if (FINDBYNAME.equals(answer)) {
                 this.findByNameItem();
             } else if (EXIT.equals(answer)) {
                 exit = true;
@@ -107,7 +114,7 @@ public class StartUI {
     private void findAllItem() {
         System.out.println("----------Все заявки----------");
         Item[] itemsAll = tracker.findAll();
-        if(itemsAll.length == 0 ) {
+        if (itemsAll.length == 0) {
             System.out.println("Заявок нет!");
         } else {
             for (Item item: itemsAll) {
@@ -168,7 +175,7 @@ public class StartUI {
         System.out.println("----------Поиск заявки по имени----------");
         String name = input.ask("Введите имя заявки:");
         Item[] itemsByName = tracker.findByName(name);
-        if(itemsByName.length == 0 ) {
+        if (itemsByName.length == 0) {
             System.out.println("Заявки с указанным именем не найдено");
         } else {
             for (Item item: itemsByName) {
@@ -178,21 +185,15 @@ public class StartUI {
     }
 
     private void showMenu() {
-        System.out.println("Меню:\n" +
-                "0.Добавить новую заявку\n" +
-                "1.Показать все заявки\n" +
-                "2.Изменить заявку\n" +
-                "3.Удалить заявку\n" +
-                "4.Поиск заявки по ID\n" +
-                "5.Поиск заявки по имени\n" +
-                "6.Выход");
+        System.out.println("Меню:\n"
+                + "0.Добавить новую заявку\n"
+                + "1.Показать все заявки\n"
+                + "2.Изменить заявку\n"
+                + "3.Удалить заявку\n"
+                + "4.Поиск заявки по ID\n"
+                + "5.Поиск заявки по имени\n"
+                + "6.Выход");
     }
 
-    /**
-     * Запускт программы.
-     * @param args
-     */
-    public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
-    }
+
 }

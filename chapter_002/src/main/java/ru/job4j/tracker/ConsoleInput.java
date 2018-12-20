@@ -8,11 +8,11 @@ import java.util.*;
  * @author tumen.garmazhapov (gtb-85@yandex.ru)
  */
 
-public class ConsoleInput implements Input{
+public class ConsoleInput implements Input {
 
     private Scanner scanner = new Scanner(System.in);
 
-    public String ask(String question){
+    public String ask(String question) {
         System.out.println(question);
         return scanner.next();
     }
