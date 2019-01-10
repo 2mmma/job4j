@@ -7,14 +7,20 @@ public class Item {
     private String desc;
     private long create;
 
-    public Item(String desc, String name, long create) {
+    public Item(String name, String desc, long create) {
         this.name = name;
         this.desc = desc;
-        this.create = create;
+        this.create = System.currentTimeMillis();
     }
 
-    public Item(String id, String name) {
+    public Item(String name, String desc) {
         this.name = name;
+        this.desc = desc;
+    }
+
+    public Item(String name, String desc, String id) {
+        this.name = name;
+        this.desc = desc;
         this.id = id;
     }
 

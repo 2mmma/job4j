@@ -17,21 +17,21 @@ public class Profession {
     public class Doctor extends Profession {
         private String diagnose;
         public String treatPatient(Patient patient) {
-            return(diagnose);
+            return (diagnose);
         }
     }
 
     public class Engineer extends Profession {
         private String house;
         public String buildBuilding(Building building) {
-            return(house);
+            return (house);
         }
     }
 
     public class Teacher extends Profession {
         private String marks;
         public String teachStudent(Student student) {
-            return(marks);
+            return (marks);
         }
     }
 

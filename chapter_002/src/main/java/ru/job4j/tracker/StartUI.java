@@ -21,27 +21,27 @@ public class StartUI {
     private static final String ADD = "0";
 
     /**
-     * Константа меню для .
+     * Константа меню для просмотра всех заявок.
      */
     private static final String SHOW = "1";
 
     /**
-     * Константа меню для добавления новой заявки.
+     * Константа меню для изменения заявки.
      */
     private static final String EDIT = "2";
 
     /**
-     * Константа меню для добавления новой заявки.
+     * Константа меню для удаления заявки.
      */
     private static final String DELETE = "3";
 
     /**
-     * Константа меню для добавления новой заявки.
+     * Константа меню для поиска заявки по ID.
      */
     private static final String FINDBYID = "4";
 
     /**
-     * Константа меню для добавления новой заявки.
+     * Константа меню для поиска заявки по названию.
      */
     private static final String FINDBYNAME = "5";
 
