@@ -10,9 +10,9 @@ public class Check {
      * @param data массив.
      * @return result.
      */
-    public boolean mono ( boolean[] data ) {
+    public boolean mono(boolean[] data) {
         boolean result = true;
-        for (int i = 0; i < data.length -1; i++) {
+        for (int i = 0; i < data.length - 1; i++) {
             if (data[i] != data[i + 1]) {
              result = false;
              break;
