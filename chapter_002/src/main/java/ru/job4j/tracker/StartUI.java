@@ -76,7 +76,7 @@ public class StartUI {
         boolean exit = false;
         while (!exit) {
             this.showMenu();
-            String answer = this.input.ask("Введите пункт меню : ");
+            String answer = this.input.ask("Введите пункт меню: ");
             if (ADD.equals(answer)) {
                 //добавление заявки вынесено в отдельный метод.
                 this.createItem();
@@ -101,8 +101,8 @@ public class StartUI {
      */
     private void createItem() {
         System.out.println("------------ Добавление новой заявки --------------");
-        String name = this.input.ask("Введите имя заявки :");
-        String desc = this.input.ask("Введите описание заявки :");
+        String name = this.input.ask("Введите имя заявки:");
+        String desc = this.input.ask("Введите описание заявки:");
         Item item = new Item(name, desc);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка добавлена. Id: " + item.getId() + " -----------");
@@ -128,11 +128,11 @@ public class StartUI {
      */
     private void editItem() {
         System.out.println("----------Редактирование заявки----------");
-        String id = input.ask("Введите ID заявки :");
+        String id = input.ask("Введите ID заявки:");
         Item item = tracker.findById(id);
         if (item != null) {
-            String name = input.ask("Введите новое имя заявки :");
-            String desc = input.ask("Введите новое описание заявки :");
+            String name = input.ask("Введите новое имя заявки:");
+            String desc = input.ask("Введите новое описание заявки:");
             item = new Item(name, desc);
             tracker.replace(id, item);
             System.out.println("Заявка успешно изменена");
@@ -185,13 +185,13 @@ public class StartUI {
     }
 
     private void showMenu() {
-        System.out.println("Меню:\n"
-                + "0.Добавить новую заявку\n"
-                + "1.Показать все заявки\n"
-                + "2.Изменить заявку\n"
-                + "3.Удалить заявку\n"
-                + "4.Поиск заявки по ID\n"
-                + "5.Поиск заявки по имени\n"
+        System.out.println("Меню:\r\n"
+                + "0.Добавить новую заявку\r\n"
+                + "1.Показать все заявки\r\n"
+                + "2.Изменить заявку\r\n"
+                + "3.Удалить заявку\r\n"
+                + "4.Поиск заявки по ID\r\n"
+                + "5.Поиск заявки по имени\r\n"
                 + "6.Выход");
     }
 
