@@ -16,4 +16,10 @@ public class ConsoleInput implements Input {
         System.out.println(question);
         return scanner.next();
     }
+
+    @Override
+    public int key(String s, List<Integer> range) {
+        int key = Integer.valueOf(this.ask(s));
+        return key;
+    }
 }
