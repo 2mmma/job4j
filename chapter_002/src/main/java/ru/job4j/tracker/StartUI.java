@@ -16,7 +16,7 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init(); }
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init(); }
 
     /**
      * Константа меню для добавления новой заявки.
@@ -84,7 +84,7 @@ public class StartUI {
         }
         do {
             menu.show();
-            menu.select(input.key("Выберите пункт меню:", range));
+            menu.select(input.ask("Выберите пункт меню:", range));
         } while (!"6".equals(this.input.ask("Выйти?(6): ")));
     }
 

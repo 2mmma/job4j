@@ -18,8 +18,19 @@ public class ConsoleInput implements Input {
     }
 
     @Override
-    public int key(String s, List<Integer> range) {
-        int key = Integer.valueOf(this.ask(s));
-        return key;
+    public int ask(String question, List<Integer> range) {
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = false;
+        for (int value : range) {
+            if (value == key) {
+                exist = true;
+                break;
+            }
+        }
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuOutException("Введите число из диапазона меню!");
+        }
     }
 }

@@ -38,8 +38,8 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int key(String s, List<Integer> range) {
-        int key = Integer.valueOf(this.ask(s));
+    public int ask(String question, List<Integer> range) {
+        int key = Integer.valueOf(this.ask(question));
         return key;
     }
 }

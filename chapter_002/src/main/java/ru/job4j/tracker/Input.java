@@ -11,5 +11,5 @@ import java.util.List;
 public interface Input {
     String ask(String question);
 
-    int key(String s, List<Integer> range);
+    int ask(String question, List<Integer> range);
 }
