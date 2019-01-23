@@ -38,7 +38,7 @@ public class StubInput implements Input {
     }
 
     @Override
-    public int ask(String question, List<Integer> range) {
+    public int ask(String question, int[] range) {
         int key = Integer.valueOf(this.ask(question));
         return key;
     }

@@ -23,7 +23,7 @@ public class MenuTracker {
     /**
      * @param хранит ссылку на массив типа UserAction.
      */
-    private List<UserAction> actions = new ArrayList<>();
+    private UserAction[] actions = new UserAction[7];
 
     /**
      * Конструктор.
@@ -39,21 +39,25 @@ public class MenuTracker {
      * Метод для получения массива меню.
      * @return длину массива
      */
-    public int getActionsLentgh() {
-        return this.actions.size();
+    public int[] getActionsNum() {
+        int[] range = new int[this.actions.length];
+        for (int i = 0; i < this.actions.length; i++) {
+            range[i] = i;
+        }
+        return range;
     }
 
     /**
      * Метод заполняет меню.
      */
     public void fillActions() {
-        this.actions.add(new CreateItem(0,"0.Добавить новую заявку"));
-        this.actions.add(new FindAll(1, "1.Показать все заявки"));
-        this.actions.add(new EditItem(2, "2.Изменить заявку"));
-        this.actions.add(new DeleteItem(3, "3.Удалить заявку"));
-        this.actions.add(new FindByIdItem(4, "4.Поиск заявки по ID"));
-        this.actions.add(new FindByNameItem(5, "5.Поиск заявки по имени"));
-        this.actions.add(new Exit(6, "6.Выход"));
+        this.actions[0] = new CreateItem(0,"0.Добавить новую заявку");
+        this.actions[1] = new FindAll(1, "1.Показать все заявки");
+        this.actions[2] = new EditItem(2, "2.Изменить заявку");
+        this.actions[3] = new DeleteItem(3, "3.Удалить заявку");
+        this.actions[4] = new FindByIdItem(4, "4.Поиск заявки по ID");
+        this.actions[5] = new FindByNameItem(5, "5.Поиск заявки по имени");
+        this.actions[6] = new Exit(6, "6.Выход");
     }
 
     /**
@@ -61,7 +65,7 @@ public class MenuTracker {
      * @param key ключ операции
      */
     public void select(int key) {
-        this.actions.get(key).execute(this.input, this.tracker);
+        this.actions[key].execute(this.input, this.tracker);
     }
 
     /**

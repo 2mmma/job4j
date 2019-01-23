@@ -1,15 +1,13 @@
 package ru.job4j.tracker;
 
-import java.util.List;
-
 /** @since 01.2018
   * @author tumen.garmazhapov (gtb-85@yandex.ru)
   */
-public class ValidateInput extends ConsoleInput {
+public class ValidateInput implements Input {
 
     private final Input input;
 
-    public ValidateInput(Input input) {
+    public ValidateInput(final Input input) {
         this.input = input;
     }
 
@@ -18,12 +16,12 @@ public class ValidateInput extends ConsoleInput {
         return this.input.ask(question);
     }
 
-    public int ask(String question, List<Integer> range) {
+    public int ask(String question, int[] range) {
         boolean invalid = true;
         int value = -1;
         do {
             try {
-                value = input.ask(question, range);
+                value = this.input.ask(question, range);
                 invalid = false;
             } catch (MenuOutException moe) {
                 System.out.println("Некорректный ввод! Введите число из диапазона меню.");

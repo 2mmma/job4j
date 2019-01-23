@@ -16,11 +16,30 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init(); }
+        new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
+    }
+
+    public StartUI(Input input, Tracker tracker) {
+        this.input = input;
+        this.tracker = tracker;
+    }
+
+    /**
+     * Основой цикл программы.
+     */
+    public void init() {
+        MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(input.ask("Выберите пункт меню:", menu.getActionsNum()));
+        } while (!"6".equals(this.input.ask("Выйти?(6): ")));
+    }
+
 
     /**
      * Константа меню для добавления новой заявки.
-     */
+     * */
     private static final String ADD = "0";
 
     /**
@@ -67,26 +86,7 @@ public class StartUI {
      * @param input ввод данных.
      * @param tracker хранилище заявок.
      */
-    public StartUI(Input input, Tracker tracker) {
-        this.input = input;
-        this.tracker = tracker;
-    }
 
-    /**
-     * Основой цикл программы.
-     */
-    public void init() {
-        MenuTracker menu = new MenuTracker(this.input, this.tracker);
-        List<Integer> range = new ArrayList<>();
-        menu.fillActions();
-        for (int i = 0; i < menu.getActionsLentgh(); i++) {
-            range.add(i);
-        }
-        do {
-            menu.show();
-            menu.select(input.ask("Выберите пункт меню:", range));
-        } while (!"6".equals(this.input.ask("Выйти?(6): ")));
-    }
 
     /**
      * Метод реализует добавление новой заявки в хранилище.
