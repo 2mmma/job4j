@@ -39,7 +39,14 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, int[] range) {
-        int key = Integer.valueOf(this.ask(question));
+        int value = Integer.valueOf(this.ask(question));
+        int key = -1;
+        for (int i = 0; i < range.length; i++) {
+            if (value == range[i]) {
+                key = value;
+                break;
+            }
+        }
         return key;
     }
 }

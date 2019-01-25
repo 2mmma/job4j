@@ -37,11 +37,11 @@ import static org.hamcrest.Matchers.is;
         );
     }
 
-    /**@Test
+    @Test
     public void whenInvalidArrayOutInput() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[] {"1", "1"}));
+        ValidateInput input = new ValidateInput(new StubInput(new String[] {"9", "1"}));
         input.ask("Enter", new int[]{1});
         assertThat(this.mem.toString(), is(String.format("Некорректный ввод! Введите число из диапазона меню.\r\n"))
         );
-    }*/
+    }
 }
