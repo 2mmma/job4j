@@ -39,14 +39,18 @@ public class StubInput implements Input {
 
     @Override
     public int ask(String question, int[] range) {
-        int value = Integer.valueOf(this.ask(question));
-        int key = -1;
-        for (int i = 0; i < range.length; i++) {
-            if (value == range[i]) {
-                key = value;
+        int key = Integer.valueOf(this.ask(question));
+        boolean exist = false;
+        for (int value : range) {
+            if (value == key) {
+                exist = true;
                 break;
             }
         }
-        return key;
+        if (exist) {
+            return key;
+        } else {
+            throw new MenuOutException("Некорректный ввод! Введите число из диапазона меню.");
+        }
     }
 }
