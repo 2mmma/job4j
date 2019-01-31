@@ -29,8 +29,7 @@ public class ConsoleInput implements Input {
         }
         if (!exist) {
             throw new MenuOutException("Введите число из диапазона меню!");
-        } else {
-            return key;
         }
+        return key;
     }
 }
