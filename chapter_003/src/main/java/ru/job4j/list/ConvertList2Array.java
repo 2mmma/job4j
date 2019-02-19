@@ -1,17 +1,20 @@
 package ru.job4j.list;
 
-import java.util.List;
+import java.util.*;
 
 public class ConvertList2Array {
+
     public int[][] toArray(List<Integer> list, int rows) {
-        int cells = list.size() % rows == 0 ? list.size()/rows : list.size()/rows + 1;
+        int cells = list.size() % rows == 0 ? list.size() / rows : list.size() / rows + 1;
         int[][] array = new int[rows][cells];
-        int count = 0;
-        for (int row = 0; row != rows; row++) {
-            for (int cell = 0; cell != cells; cell++) {
-                array[row][cell] = count >= list.size() ? 0 : list.get(count++);
+        int row = 0;
+        int cell = 0;
+        for (int count : list) {
+            array[row][cell++] = count;
+            if (cell == array[row].length) {
+                cell = 0;
+                row++;
             }
-        }
-        return array;
+        }return array;
     }
 }
