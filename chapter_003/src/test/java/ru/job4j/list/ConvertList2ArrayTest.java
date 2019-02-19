@@ -6,6 +6,10 @@ import java.util.Arrays;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * @author tumen.garmazhapov
+ * @since 02.2019
+ */
 public class ConvertList2ArrayTest {
     @Test
     public void when7ElementsThen9() {

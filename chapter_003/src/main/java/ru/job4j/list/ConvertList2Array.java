@@ -2,8 +2,17 @@ package ru.job4j.list;
 
 import java.util.*;
 
+/**
+ * @author tumen.garmazhapov
+ * @since 02.2019
+ */
 public class ConvertList2Array {
 
+    /**
+     * метод конвертирует двумерный массив в список
+     * @param list - список.
+     * @return array - двумерный массив.
+     */
     public int[][] toArray(List<Integer> list, int rows) {
         int cells = list.size() % rows == 0 ? list.size() / rows : list.size() / rows + 1;
         int[][] array = new int[rows][cells];
