@@ -26,4 +26,19 @@ public class ConvertList2Array {
             }
         }return array;
     }
+
+    /**
+     * метод конвертирует список массивов в один список
+     * @param list - список массивов.
+     * @return result - список.
+     */
+    public List<Integer> convert (List<int[]> list) {
+        List<Integer> result = new ArrayList<>();
+        for (int[]arr : list){
+            for (int count : arr){
+                result.add(count);
+            }
+        }
+       return result;
+    }
 }
