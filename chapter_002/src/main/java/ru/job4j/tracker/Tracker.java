@@ -1,6 +1,6 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -10,8 +10,7 @@ import java.util.Random;
 
 public class Tracker {
 
-    private final Item[] items = new Item[100];
-    private int position = 0;
+    private final ArrayList<Item> items = new ArrayList<>();
     private static final Random RN = new Random();
 
     /**
@@ -20,7 +19,7 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        items.add(item);
         return item;
     }
 
@@ -30,26 +29,25 @@ public class Tracker {
      * @return Уникальный ключ.
      */
     private String generateId() {
-        return String.valueOf(System.currentTimeMillis() + RN.nextInt());
+        return String.valueOf(RN.nextInt(100));
     }
 
 
-    /**редактирование заявок
-     *
-     * @param id
-     * @param item
+    /**
+     * редактирование заявок
+     * @param id ключ
+     * @param item заявка
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
-        for (int i = 0; i < position; i++) {
-            if (item != null && items[i].getId().equals(id)) {
-                items[i] = item;
+        for (int i = 0; i < items.size(); i++) {
+            if (item != null && items.get(i).getId().equals(id)) {
+                items.set(i, item);
                 item.setId(id);
                 result = true;
                 break;
             }
-        }
-        return result;
+        } return result;
     }
 
     /**
@@ -57,53 +55,44 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        int count = 0;
-        for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
-                items[i] = items[count];
-                System.arraycopy(this.items, i + 1, this.items, i, items.length - i - 1);
-                position--;
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                items.remove(i);
                 result = true;
                 break;
             }
-        }
-        return result;
+        }return result;
     }
 
     /**
      * получение списка всех заявок
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, this.position);
+    public ArrayList<Item> findAll() {
+        return this.items;
     }
 
     /**получение списка по имени
-     *
-     * @param key
-     * @return
+     * @param key ключ
+     * @return result
      */
-    public Item[] findByName(String key) {
-        int count = 0;
-        Item[] result = new Item[position];
-        for (int i = 0; i < result.length; i++) {
-            if (items[i].getName().equals(key)) {
-                result[count++] = items[i];
+    public ArrayList<Item> findByName(String key) {
+        ArrayList<Item> result = new ArrayList<>();
+        for ( Item item : items ) {
+            if (item.getName().equals(key)) {
+                result.add(item);
             }
-        }
-        return Arrays.copyOf(result, count);
+        } return result;
     }
 
     /**получение заявки по id
-     * @param id
-     * @return
+     * @param id ключ
+     * @return result
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                result = item;
-                break;
-            }
+        for ( Item item : items)
+            if (item != null && item.getId().equals(id)){
+            result = item;
         }
         return result;
     }

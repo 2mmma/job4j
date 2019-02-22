@@ -1,7 +1,6 @@
 package ru.job4j.tracker;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @version 1.0
@@ -10,19 +9,10 @@ import java.util.List;
  */
 public class MenuTracker {
 
-    /**
-     * @param хранит ссылку на объект .
-     */
     private Input input;
 
-    /**
-     * @param хранит ссылку на объект .
-     */
     private Tracker tracker;
 
-    /**
-     * @param хранит ссылку на массив типа UserAction.
-     */
     private UserAction[] actions = new UserAction[7];
 
     /**
@@ -105,8 +95,8 @@ public class MenuTracker {
         @Override
         public void execute(Input input, Tracker tracker) {
             System.out.println("----------Все заявки----------");
-            Item[] itemsAll = tracker.findAll();
-            if (itemsAll.length == 0) {
+            ArrayList<Item> itemsAll = tracker.findAll();
+            if (itemsAll.size() == 0) {
                 System.out.println("Заявок нет!");
             } else {
                 for (Item item : itemsAll) {
@@ -186,13 +176,13 @@ public class MenuTracker {
         public void execute(Input input, Tracker tracker) {
             System.out.println("----------Поиск заявки по имени----------");
             String name = input.ask("Введите имя заявки:");
-            Item[] itemsByName = tracker.findByName(name);
-            if (itemsByName.length == 0) {
-                System.out.println("Заявки с указанным именем не найдено");
-            } else {
+            ArrayList<Item> itemsByName = tracker.findByName(name);
+            if (itemsByName.size() != 0) {
                 for (Item item: itemsByName) {
                     System.out.println(item.toString());
                 }
+            } else {
+                System.out.println("Заявки с указанным именем не найдено");
             }
         }
     }

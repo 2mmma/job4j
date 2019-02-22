@@ -4,10 +4,8 @@ import org.junit.After;
 import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.StringJoiner;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertNull;
 
 /**
  * @author tumen.garmazhapov (gtb-85@yandex.ru)
@@ -20,21 +18,19 @@ public class StartUITest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final StringBuilder MENU =
             new StringBuilder()
-            .append("Меню:")
+            .append("0->Добавить новую заявку")
             .append(System.lineSeparator())
-            .append("0.Добавить новую заявку")
+            .append("1->Показать все заявки")
             .append(System.lineSeparator())
-            .append("1.Показать все заявки")
+            .append("2->Изменить заявку")
             .append(System.lineSeparator())
-            .append("2.Изменить заявку")
+            .append("3->Удалить заявку")
             .append(System.lineSeparator())
-            .append("3.Удалить заявку")
+            .append("4->Поиск заявки по ID")
             .append(System.lineSeparator())
-            .append("4.Поиск заявки по ID")
+            .append("5->Поиск заявки по имени")
             .append(System.lineSeparator())
-            .append("5.Поиск заявки по имени")
-            .append(System.lineSeparator())
-            .append("6.Выход");
+            .append("6->Выход");
 
     @Before
     public void loadOutput() {
@@ -51,9 +47,9 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();     // создаём Tracker
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "1", "6"});   //создаём StubInput с последовательностью действий
+        Input input = new StubInput(new String[]{"0", "test name", "desc", "no", "1", "6"});   //создаём StubInput с последовательностью действий
         new StartUI(input, tracker).init();     //   создаём StartUI и вызываем метод init()
-        assertThat(tracker.findAll()[0].getName(), is("test name"));
+        assertThat(tracker.findAll().get(0).getName(), is("test name"));
     }
 
     @Test
@@ -75,8 +71,6 @@ public class StartUITest {
                                 .append("----------Редактирование заявки----------")
                                 .append(System.lineSeparator())
                                 .append("Заявка успешно изменена")
-                                .append(System.lineSeparator())
-                                .append(MENU)
                                 .append(System.lineSeparator())
                                 .toString()
                 )
@@ -100,8 +94,6 @@ public class StartUITest {
                                 .append(System.lineSeparator())
                                 .append("Заявка удалена")
                                 .append(System.lineSeparator())
-                                .append(MENU)
-                                .append(System.lineSeparator())
                                 .toString()
                 )
         );
@@ -123,8 +115,6 @@ public class StartUITest {
                                 .append("----------Поиск заявки по имени----------")
                                 .append(System.lineSeparator())
                                 .append(item.toString())
-                                .append(System.lineSeparator())
-                                .append(MENU)
                                 .append(System.lineSeparator())
                                 .toString()
                 )
@@ -152,8 +142,6 @@ public class StartUITest {
                                 .append(item2.toString())
                                 .append(System.lineSeparator())
                                 .append(item3.toString())
-                                .append(System.lineSeparator())
-                                .append(MENU)
                                 .append(System.lineSeparator())
                                 .toString()
                 )

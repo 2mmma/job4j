@@ -18,10 +18,11 @@ public class Item {
         this.desc = desc;
     }
 
-    public Item(String name, String desc, String id) {
+    public Item(String id, String name, String desc) {
+        this.id = id;
         this.name = name;
         this.desc = desc;
-        this.id = id;
+
     }
 
     public String getName() {
