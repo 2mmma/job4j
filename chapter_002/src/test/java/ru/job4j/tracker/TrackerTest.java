@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -53,7 +54,7 @@ public class TrackerTest {
         tracker.add(item1);
         Item item2 = new Item("test2", "name2", 345L);
         tracker.add(item2);
-        ArrayList<Item> result = tracker.findByName("name2");
+        List<Item> result = tracker.findByName("name2");
         assertThat(tracker.findByName("name2"), is(result));
     }
 }
