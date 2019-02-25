@@ -1,8 +1,6 @@
 package ru.job4j.comparator;
 
-import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * @author tumen.garmazhapov
@@ -16,8 +14,32 @@ public class SortUser {
      * @param users - список пользователей
      * @return userSet
      */
-    Set<User> sort (List<User> users) {
+    public Set<User> sort (List<User> users) {
         return new TreeSet<>(users);
+    }
+
+    public List<User> sortNameLength (List<User> users) {
+
+        users.sort(new Comparator<User>() {
+            public int compare(User a, User b) {
+                return a.getName().length() - b.getName().length();
+            }
+        });
+        return users;
+    }
+
+    public List<User> sortByAllFields (List<User> users) {
+
+        users.sort(new Comparator<User>() {
+            public int compare(User user1, User user2) {
+                int result = user1.getName().compareTo(user2.getName());
+                if (result == 0) {
+                    result = Integer.compare(user1.getAge(), user2.getAge());
+                }
+                return result;
+            }
+        });
+        return users;
     }
 
 }
