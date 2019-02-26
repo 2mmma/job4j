@@ -42,7 +42,7 @@ public class MenuTracker {
      * Метод заполняет меню.
      */
     public void fillActions() {
-        this.actions[0] = new CreateItem(0,"Добавить новую заявку");
+        this.actions[0] = new CreateItem(0, "Добавить новую заявку");
         this.actions[1] = new FindAll(1, "Показать все заявки");
         this.actions[2] = new EditItem(2, "Изменить заявку");
         this.actions[3] = new DeleteItem(3, "Удалить заявку");
@@ -130,7 +130,7 @@ public class MenuTracker {
         }
     }
 
-    public class DeleteItem extends BaseAction{
+    public class DeleteItem extends BaseAction {
 
         public DeleteItem(int key, String menu) {
             super(key, menu);

@@ -9,14 +9,18 @@ public class User implements Comparable<User> {
     private final String name;
     private final int age;
 
-    public User (String name, int age) {
+    public User(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
-    public String getName() { return this.name; }
+    public String getName() {
+        return this.name;
+    }
 
-    public int getAge() { return this.age; }
+    public int getAge() {
+        return this.age;
+    }
 
     public int compareTo(User user) {
         return this.age - user.getAge();

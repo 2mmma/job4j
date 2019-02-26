@@ -62,7 +62,7 @@ public class Tracker {
                 result = true;
                 break;
             }
-        }return result;
+        } return result;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Tracker {
      */
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
-        for ( Item item : items ) {
+        for (Item item : items) {
             if (item.getName().equals(key)) {
                 result.add(item);
             }
@@ -91,10 +91,10 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for ( Item item : items)
-            if (item != null && item.getId().equals(id)){
+        for (Item item : items) {
+            if (item != null && item.getId().equals(id)) {
             result = item;
-        }
-        return result;
+            }
+        } return result;
     }
 }

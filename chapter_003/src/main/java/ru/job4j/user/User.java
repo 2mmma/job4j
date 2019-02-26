@@ -15,13 +15,17 @@ public class User {
         this.city = city;
     }
 
-    public Integer getId() { return this.id; }
+    public Integer getId() {
+        return this.id;
+    }
 
     public String getName() {
         return this.name;
     }
 
-    public String getCity() { return this.city; }
+    public String getCity() {
+        return this.city;
+    }
 
 
 }

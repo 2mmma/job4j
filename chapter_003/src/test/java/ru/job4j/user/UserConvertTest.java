@@ -16,7 +16,7 @@ public class UserConvertTest {
         @Test
         public void whenList3UserConvertHashMap() {
             UserConvert userConvert = new UserConvert();
-            User user1 = new User(7,"Cristiano Ronaldo", "Torino");
+            User user1 = new User(7, "Cristiano Ronaldo", "Torino");
             User user2 = new User(5, "Donald Trump", "Washington");
             User user3 = new User(1, "Jackie Chan", "Shanghai");
             List<User> list = new ArrayList<>();
@@ -34,7 +34,7 @@ public class UserConvertTest {
         @Test
         public void whenList3UserConvertInHashMapAndFindById() {
             UserConvert userConvert = new UserConvert();
-            User user1 = new User(7,"Cristiano Ronaldo", "Torino");
+            User user1 = new User(7, "Cristiano Ronaldo", "Torino");
             User user2 = new User(5, "Donald Trump", "Washington");
             User user3 = new User(1, "Jackie Chan", "Shanghai");
             List<User> list = new ArrayList<>();

@@ -52,8 +52,6 @@ public class Logic3T {
                 if (this.table[i][j].equals(null)) {
                     result = false;
                     break;
-                } else {
-                    break;
                 }
             }
         }

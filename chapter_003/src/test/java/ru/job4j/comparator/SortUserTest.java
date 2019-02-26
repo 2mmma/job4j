@@ -21,12 +21,12 @@ public class SortUserTest {
         users.add(new User("Petr", 40));
 
         List<User> except = new ArrayList<>();
-        except.add(new User( "Ivan", 35));
+        except.add(new User("Ivan", 35));
         except.add(new User("Petr", 40));
         except.add(new User("Jack", 55));
 
         Set<User> userSet = sortUser.sort(users);
-        assertThat(userSet.toString(),is(except.toString()));
+        assertThat(userSet.toString(), is(except.toString()));
     }
 
     @Test
@@ -42,11 +42,11 @@ public class SortUserTest {
         List<User> except = new ArrayList<>();
         except.add(new User("Bob", 15));
         except.add(new User("Jack", 55));
-        except.add(new User( "Ivan", 35));
+        except.add(new User("Ivan", 35));
         except.add(new User("Petrov", 40));
 
         List<User> userSet = sortUser.sortNameLength(users);
-        assertThat(userSet.toString(),is(except.toString()));
+        assertThat(userSet.toString(), is(except.toString()));
     }
 
     @Test
@@ -65,11 +65,11 @@ public class SortUserTest {
         except.add(new User("Bob", 15));
         except.add(new User("Bob", 20));
         except.add(new User("Ivan", 18));
-        except.add(new User( "Ivan", 35));
+        except.add(new User("Ivan", 35));
         except.add(new User("Jack", 55));
         except.add(new User("Petrov", 40));
 
         List<User> userSet = sortUser.sortByAllFields(users);
-        assertThat(userSet.toString(),is(except.toString()));
+        assertThat(userSet.toString(), is(except.toString()));
     }
 }

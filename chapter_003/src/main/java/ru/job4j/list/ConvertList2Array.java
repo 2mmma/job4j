@@ -24,7 +24,7 @@ public class ConvertList2Array {
                 cell = 0;
                 row++;
             }
-        }return array;
+        } return array;
     }
 
     /**
@@ -32,10 +32,10 @@ public class ConvertList2Array {
      * @param list - список массивов.
      * @return result - список.
      */
-    public List<Integer> convert (List<int[]> list) {
+    public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
-        for (int[]arr : list){
-            for (int count : arr){
+        for (int[]arr : list) {
+            for (int count : arr) {
                 result.add(count);
             }
         }

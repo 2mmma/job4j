@@ -16,7 +16,7 @@ public class StartUITest {
     private final PrintStream stdout = System.out;
     // буфер для результата.
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private final StringBuilder MENU =
+    private final StringBuilder menu =
             new StringBuilder()
             .append("0->Добавить новую заявку")
             .append(System.lineSeparator())
@@ -66,7 +66,7 @@ public class StartUITest {
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append(MENU)
+                                .append(menu)
                                 .append(System.lineSeparator())
                                 .append("----------Редактирование заявки----------")
                                 .append(System.lineSeparator())
@@ -81,14 +81,14 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerDeleteItem() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test name","desc"));
+        Item item = tracker.add(new Item("test name", "desc"));
         Input input = new StubInput(new String[]{"3", item.getId(), "6"});
-        new StartUI(input,tracker).init();
+        new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append(MENU)
+                                .append(menu)
                                 .append(System.lineSeparator())
                                 .append("----------Удаление заявки----------")
                                 .append(System.lineSeparator())
@@ -103,14 +103,14 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerFindByName() {
         Tracker tracker = new Tracker();
-        Item item = tracker.add(new Item("test","byName"));
+        Item item = tracker.add(new Item("test", "byName"));
         Input input = new StubInput(new String[]{"5", "test", "6"});
-        new StartUI(input,tracker).init();
+        new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append(MENU)
+                                .append(menu)
                                 .append(System.lineSeparator())
                                 .append("----------Поиск заявки по имени----------")
                                 .append(System.lineSeparator())
@@ -124,16 +124,16 @@ public class StartUITest {
     @Test
     public void whenUserAddItemsThenTrackerFindAllItems() {
         Tracker tracker = new Tracker();
-        Item item1 = tracker.add(new Item("test1","first"));
-        Item item2 = tracker.add(new Item("test2","second"));
-        Item item3 = tracker.add(new Item("test3","third"));
+        Item item1 = tracker.add(new Item("test1", "first"));
+        Item item2 = tracker.add(new Item("test2", "second"));
+        Item item3 = tracker.add(new Item("test3", "third"));
         Input input = new StubInput(new String[]{"1", "6"});
-        new StartUI(input,tracker).init();
+        new StartUI(input, tracker).init();
         assertThat(
                 new String(out.toByteArray()),
                 is(
                         new StringBuilder()
-                                .append(MENU)
+                                .append(menu)
                                 .append(System.lineSeparator())
                                 .append("----------Все заявки----------")
                                 .append(System.lineSeparator())
