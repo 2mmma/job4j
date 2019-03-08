@@ -51,11 +51,11 @@ public class OperationTest {
         operation.addUser(second);
         operation.addAccountToUser("1234567890", account1);
         operation.addAccountToUser("0987654321", account2);
-        assertTrue(operation.transferMoney("1234567890","11223344",
+        assertTrue(operation.transferMoney("1234567890", "11223344",
                 "0987654321", "99887766", 500));
         assertThat(operation.getActualAccount("0987654321", "99887766").getValue(), is(3000.0));
 
-        assertFalse(operation.transferMoney("1234567890","11223344",
+        assertFalse(operation.transferMoney("1234567890", "11223344",
                 "0987654321", "99887766", 1500));
 
     }
