@@ -76,14 +76,15 @@ public class Operation {
                                   String destPassport, String destRequisite, double amount) {
         boolean result = false;
         if (srcPassport != null && srcRequisite != null
-                && destPassport != null && destRequisite != null && amount > 0) {
+                && destPassport != null && destRequisite != null && amount > 0
+                && amount < getActualAccount(srcPassport, srcRequisite).getValue()) {
 
-            final Account actualAccount = getActualAccount(srcPassport, srcRequisite);
-            final Account actualAccount1 = getActualAccount(destPassport, destRequisite);
+            final Account actualSrcAccount = getActualAccount(srcPassport, srcRequisite);
+            final Account actualDestAccount = getActualAccount(destPassport, destRequisite);
 
-            if (actualAccount != null && actualAccount1 != null) {
-                actualAccount.transfer(
-                        actualAccount1, amount);
+            if (actualSrcAccount != null && actualDestAccount != null) {
+                actualSrcAccount.transfer(
+                        actualDestAccount, amount);
             }
             result = true;
         }
