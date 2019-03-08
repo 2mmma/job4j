@@ -13,6 +13,7 @@ public class Account {
         this.value = value;
         this.requisites = requisites;
     }
+
     public double getValue() {
         return this.value;
     }
@@ -21,6 +22,12 @@ public class Account {
         return this.requisites;
     }
 
+    /**
+     * переводит сумму на счет получателя
+     * @param destination - счет пользователя(получатель)
+     * @param amount - сумма перевода
+     * @return true - при успешной транзакции, false - если транзакция не прошла
+     */
     boolean transfer(Account destination, double amount) {
         boolean success = false;
         if (amount > 0 && amount < this.value && destination != null) {

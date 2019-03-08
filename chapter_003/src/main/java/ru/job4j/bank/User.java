@@ -14,7 +14,11 @@ public class User {
         this.passport = passport;
     }
 
-    public String getName() { return this.name; }
+    public String getName() {
+        return this.name;
+    }
 
-    public String getPassport() { return this.passport; }
+    public String getPassport() {
+        return this.passport;
+    }
 }

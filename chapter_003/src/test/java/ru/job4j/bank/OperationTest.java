@@ -1,17 +1,11 @@
 package ru.job4j.bank;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author tumen.garmazhapov
@@ -19,7 +13,7 @@ import java.util.Map;
  */
 public class OperationTest {
 
-    private Operation operation = new Operation();
+    private final Operation operation = new Operation();
     private final User first = new User("Garmazhapov Tumen", "1234567890");
     private final User second = new User("Arsentev Petr", "0987654321");
     private final Account account1 = new Account(1000, "11223344");
@@ -34,6 +28,8 @@ public class OperationTest {
 
         operation.deleteUser(first);
         assertThat(result.size(), is(1));
+
+        assertThat(operation.findByPassport("0987654321").getName(), is("Arsentev Petr"));
     }
 
     @Test
@@ -41,8 +37,26 @@ public class OperationTest {
         operation.addUser(first);
         operation.addAccountToUser("1234567890", account1);
         operation.addAccountToUser("1234567890", account2);
-        List<Account> result = new ArrayList();
-        result = operation.getUserAccounts("1234567890");
-        assertThat(result.size(), is(2));
+        assertThat(operation.getUserAccounts("1234567890").size(), is(2));
+
+        operation.deleteAccountFromUser("1234567890", account1);
+        assertThat(operation.getUserAccounts("1234567890").size(), is(1));
+        assertThat(operation.getUserAccounts("1234567890"), is(Collections.singletonList(account2)));
+
+    }
+
+    @Test
+    public void whenFirstUserTransferMoneyToSecond() {
+        operation.addUser(first);
+        operation.addUser(second);
+        operation.addAccountToUser("1234567890", account1);
+        operation.addAccountToUser("0987654321", account2);
+        assertTrue(operation.transferMoney("1234567890","11223344",
+                "0987654321", "99887766", 500));
+        assertThat(operation.getActualAccount("0987654321", "99887766").getValue(), is(3000.0));
+
+        assertFalse(operation.transferMoney("1234567890","11223344",
+                "0987654321", "99887766", 1500));
+
     }
 }

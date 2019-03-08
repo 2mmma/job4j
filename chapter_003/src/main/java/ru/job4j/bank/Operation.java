@@ -32,10 +32,16 @@ public class Operation {
     /**
      * метод добавляет счет пользователю
      * @param passport - паспорт пользователя
-     * @param account - счет пользователя
+     * @param account - новый счет пользователя
      */
     public void addAccountToUser(String passport, Account account) {
-        users.get(findByPassport(passport)).add(account);
+        User byPassport = findByPassport(passport);
+        if (byPassport != null) {
+            List<Account> list = this.users.get(byPassport);
+            if (!list.contains(account)) {
+                list.add(account);
+            }
+        }
     }
 
 
@@ -52,10 +58,10 @@ public class Operation {
     /**
      * метод возвращает список счетов пользователя
      * @param passport - паспорт пользователя
-     * @return - список счетов пользователя
+     * @return список счетов пользователя
      */
     public List<Account> getUserAccounts(String passport) {
-        return users.get(passport);
+        return this.users.get(findByPassport(passport));
     }
 
     /**
@@ -66,29 +72,48 @@ public class Operation {
      * @param destRequisite - счет пользователя(получатель)
      * @param amount - сумма перевода
      * @return true или false*/
-    public boolean transferMoney(String srcPassport, Account srcRequisite,
-                                  String destPassport, Account destRequisite, double amount) {
+    public boolean transferMoney(String srcPassport, String srcRequisite,
+                                  String destPassport, String destRequisite, double amount) {
         return getActualAccount(srcPassport, srcRequisite).transfer(
                 getActualAccount(destPassport, destRequisite), amount);
     }
 
     /**
-     * метод возвращает пользователя и счет
+     * метод возвращает нужный счет пользователя
      * @param passport - паспорт пользователя
-     * @param account - счет пользователя
-     * @return выбранный счет пользователя*/
-    private Account getActualAccount(String passport, Account account) {
-        List<Account> list = this.users.get(passport);
-        return list.get(list.indexOf(account));
+     * @param requisite - реквизиты счета пользователя
+     * @return acc - выбранный счет пользователя
+     */
+    public Account getActualAccount(String passport, String requisite) {
+        Account acc = null;
+        User byPassport = findByPassport(passport);
+        if (byPassport != null) {
+            List<Account> list = this.users.get(byPassport);
+            for (Account account : list) {
+                if (account.getRequisites().equals(requisite)) {
+                    acc = account;
+                    break;
+                }
+            }
+        }
+        return acc;
     }
 
+    /**
+     * метод возвращает список всех пользователей
+     * @return Map - коллекция всех пользователей со счетами
+     */
     public Map<User, List<Account>> getUsers() {
         return users;
     }
 
+    /**
+     * находит нужного пользователя по паспорту
+     * @param passport - паспорт для поиска пользователя
+     * @return user - нужный пользователь
+     */
     public User findByPassport(String passport) {
         User user = null;
-
         for (User temp : users.keySet()) {
             if (temp.getPassport().equals(passport)) {
                 user = temp;
