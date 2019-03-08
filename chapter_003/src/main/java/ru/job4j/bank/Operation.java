@@ -74,8 +74,20 @@ public class Operation {
      * @return true или false*/
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                   String destPassport, String destRequisite, double amount) {
-        return getActualAccount(srcPassport, srcRequisite).transfer(
-                getActualAccount(destPassport, destRequisite), amount);
+        boolean result = false;
+        if (srcPassport != null && srcRequisite != null
+                && destPassport != null && destRequisite != null && amount > 0) {
+
+            final Account actualAccount = getActualAccount(srcPassport, srcRequisite);
+            final Account actualAccount1 = getActualAccount(destPassport, destRequisite);
+
+            if (actualAccount != null && actualAccount1 != null) {
+                actualAccount.transfer(
+                        actualAccount1, amount);
+            }
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -87,7 +99,7 @@ public class Operation {
     public Account getActualAccount(String passport, String requisite) {
         Account acc = null;
         User byPassport = findByPassport(passport);
-        if (byPassport != null) {
+        if (byPassport != null && requisite != null) {
             List<Account> list = this.users.get(byPassport);
             for (Account account : list) {
                 if (account.getRequisites().equals(requisite)) {
