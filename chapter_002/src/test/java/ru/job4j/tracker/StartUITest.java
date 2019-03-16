@@ -73,12 +73,12 @@ public class StartUITest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        String.valueOf(menu) +
-                                System.lineSeparator() +
-                                "----------Редактирование заявки----------" +
-                                System.lineSeparator() +
-                                "Заявка успешно изменена" +
-                                System.lineSeparator()
+                        String.valueOf(menu)
+                                + System.lineSeparator()
+                                + "----------Редактирование заявки----------"
+                                + System.lineSeparator()
+                                + "Заявка успешно изменена"
+                                + System.lineSeparator()
                 )
         );
     }
@@ -93,12 +93,12 @@ public class StartUITest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        String.valueOf(menu) +
-                                System.lineSeparator() +
-                                "----------Удаление заявки----------" +
-                                System.lineSeparator() +
-                                "Заявка удалена" +
-                                System.lineSeparator()
+                        String.valueOf(menu)
+                                + System.lineSeparator()
+                                + "----------Удаление заявки----------"
+                                + System.lineSeparator()
+                                + "Заявка удалена"
+                                + System.lineSeparator()
                 )
         );
     }
@@ -113,12 +113,12 @@ public class StartUITest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        String.valueOf(menu) +
-                                System.lineSeparator() +
-                                "----------Поиск заявки по имени----------" +
-                                System.lineSeparator() +
-                                item.toString() +
-                                System.lineSeparator()
+                        String.valueOf(menu)
+                                + System.lineSeparator()
+                                + "----------Поиск заявки по имени----------"
+                                + System.lineSeparator()
+                                + item.toString()
+                                + System.lineSeparator()
                 )
         );
     }
@@ -134,16 +134,16 @@ public class StartUITest {
         assertThat(
                 new String(out.toByteArray()),
                 is(
-                        String.valueOf(menu) +
-                                System.lineSeparator() +
-                                "----------Все заявки----------" +
-                                System.lineSeparator() +
-                                item1.toString() +
-                                System.lineSeparator() +
-                                item2.toString() +
-                                System.lineSeparator() +
-                                item3.toString() +
-                                System.lineSeparator()
+                        String.valueOf(menu)
+                                + System.lineSeparator()
+                                + "----------Все заявки----------"
+                                + System.lineSeparator()
+                                + item1.toString()
+                                + System.lineSeparator()
+                                + item2.toString()
+                                + System.lineSeparator()
+                                + item3.toString()
+                                + System.lineSeparator()
                 )
         );
     }
