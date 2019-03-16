@@ -3,6 +3,7 @@ package ru.job4j.tracker;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * @author tumen.garmazhapov
@@ -17,6 +18,7 @@ public class Tracker {
     /**
      * Метод реализаущий добавление заявки в хранилище
      * @param item новая заявка
+     * @return item - добавленная заявка
      */
     public Item add(Item item) {
         item.setId(this.generateId());
@@ -38,21 +40,26 @@ public class Tracker {
      * редактирование заявок
      * @param id ключ
      * @param item заявка
+     * @return true/false
      */
     public boolean replace(String id, Item item) {
         boolean result = false;
         for (int i = 0; i < items.size(); i++) {
-            if (item != null && items.get(i).getId().equals(id)) {
+            Predicate<Item> predicate = item1 -> item1.getId().equals(id);
+            if (predicate.test(items.get(i))) {
                 items.set(i, item);
                 item.setId(id);
                 result = true;
                 break;
             }
-        } return result;
+        }
+        return result;
     }
 
     /**
      * удаление заявок
+     * @param id - ключ заявки удаляемой заявки
+     * @return true/false
      */
     public boolean delete(String id) {
         boolean result = false;
@@ -62,39 +69,47 @@ public class Tracker {
                 result = true;
                 break;
             }
-        } return result;
+        }
+        return result;
     }
 
     /**
      * получение списка всех заявок
+     * @return  items - все заявки
      */
     public List<Item> findAll() {
         return this.items;
     }
 
-    /**получение списка по имени
+    /**
+     * получение списка по имени
      * @param key ключ
-     * @return result
+     * @return result - найденная(ые) заявка(и)
      */
     public List<Item> findByName(String key) {
         List<Item> result = new ArrayList<>();
+        Predicate<Item> predicate = item -> item.getName().equals(key);
         for (Item item : items) {
-            if (item.getName().equals(key)) {
+            if (predicate.test(item)) {
                 result.add(item);
             }
-        } return result;
+        }
+        return result;
     }
+
 
     /**получение заявки по id
      * @param id ключ
-     * @return result
+     * @return result - найденная заявка
      */
     public Item findById(String id) {
         Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-            result = item;
+        Predicate<Item> predicate = item -> item.getId().equals(id);
+            for (Item item : items) {
+                if (predicate.test(item)) {
+                    result = item;
+                }
             }
-        } return result;
+            return result;
     }
 }
