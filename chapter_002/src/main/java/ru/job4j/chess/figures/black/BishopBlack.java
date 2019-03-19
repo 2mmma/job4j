@@ -1,10 +1,10 @@
 package ru.job4j.chess.figures.black;
 
-import ru.job4j.chess.Chess;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
 import java.util.Random;
+import java.util.function.BiPredicate;
 
 /**
  *
@@ -27,7 +27,8 @@ public class BishopBlack implements Figure {
     @Override
     public Cell[] way(Cell source, Cell dest) {
         Cell[] steps = new Cell[0];
-        if (Math.abs(source.y - dest.y) == Math.abs(source.x - dest.x)) {
+        BiPredicate<Cell, Cell> biPredicate = (source1, dest1) -> Math.abs(source.y - dest.y) == Math.abs(source.x - dest.x);
+        if (biPredicate.test(source, dest)) {
             steps = tracer(source, dest);
         }
         return steps;

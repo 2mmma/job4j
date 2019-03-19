@@ -6,7 +6,8 @@ import ru.job4j.chess.exceptions.OccupiedWayException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
-import java.util.Optional;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 /**
  * //TODO add comments.
@@ -19,6 +20,7 @@ public class Logic {
     private final Figure[] figures = new Figure[32];
     private int index = 0;
 
+
     public void add(Figure figure) {
         this.figures[this.index++] = figure;
     }
@@ -29,7 +31,9 @@ public class Logic {
         int index = this.findBy(source);
         if (index != -1) {
             Cell[] steps = this.figures[index].way(source, dest);
-            if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+            BiPredicate<Cell, Cell> biPredicate = (source1, dest1) -> steps.length > 0
+                    && steps[steps.length - 1].equals(dest);
+            if (biPredicate.test(source, dest)) {
                 rst = true;
                 this.figures[index] = this.figures[index].copy(dest);
             }
@@ -46,8 +50,10 @@ public class Logic {
 
     private int findBy(Cell cell) {
         int rst = -1;
+        Predicate<Cell> predicate = position -> this.figures[index] != null
+                && this.figures[index].position().equals(cell);
         for (int index = 0; index != this.figures.length; index++) {
-            if (this.figures[index] != null && this.figures[index].position().equals(cell)) {
+            if (predicate.test(cell)) {
                 rst = index;
                 break;
             }
