@@ -21,7 +21,7 @@ public class SortUser {
     }
 
     //компаратор для сотировки списка пользователей по длине имени
-    class nameLengthComparator implements Comparator<User> {
+    class NameLengthComparator implements Comparator<User> {
         @Override
         public int compare(User user1, User user2) {
             return user1.getName().length() - (user2.getName().length());
@@ -35,11 +35,11 @@ public class SortUser {
      * @return users - отсортированный список польозвателей
      */
     public List<User> sortNameLength(List<User> users) {
-        return users.stream().sorted(new nameLengthComparator()).collect(Collectors.toList());
+        return users.stream().sorted(new NameLengthComparator()).collect(Collectors.toList());
     }
 
     //компаратор для сотировки списка пользователей по имени и возрасту
-    class allFieldsComparator implements Comparator<User> {
+    class AllFieldsComparator implements Comparator<User> {
         @Override
         public int compare(User user1, User user2) {
             int result = user1.getName().compareTo(user2.getName());
@@ -57,7 +57,7 @@ public class SortUser {
      * @return users - отсортированный список польозвателей
      */
     public List<User> sortByAllFields(List<User> users) {
-        return users.stream().sorted(new allFieldsComparator()).collect(Collectors.toList());
+        return users.stream().sorted(new AllFieldsComparator()).collect(Collectors.toList());
     }
 
 }
