@@ -34,11 +34,8 @@ public class ConvertList2Array {
      */
     public List<Integer> convert(List<int[]> list) {
         List<Integer> result = new ArrayList<>();
-        for (int[]arr : list) {
-            for (int count : arr) {
-                result.add(count);
-            }
-        }
-       return result;
+        list.stream().map(Arrays::stream)
+                .forEach(stream -> stream.forEach(result::add));
+        return result;
     }
 }

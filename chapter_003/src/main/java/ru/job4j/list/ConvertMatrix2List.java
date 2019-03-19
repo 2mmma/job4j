@@ -1,6 +1,7 @@
 package ru.job4j.list;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,12 +15,9 @@ public class ConvertMatrix2List {
      * @return list - список.
      */
     public List<Integer> toList(int[][] array) {
-        List<Integer> list = new ArrayList<>();
-        for (int[] arr : array) {
-            for (int count : arr) {
-                list.add(count);
-            }
-        }
-        return list;
+        List<Integer> result = new ArrayList<>();
+        Arrays.stream(array).map(Arrays::stream)
+                .forEach(stream -> stream.forEach(result::add));
+        return result;
     }
 }
