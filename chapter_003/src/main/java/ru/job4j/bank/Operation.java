@@ -15,6 +15,7 @@ public class Operation {
 
     /**
      * метод добавляет нового пользователя
+     *
      * @param user - пользователь
      */
     public void addUser(User user) {
@@ -23,6 +24,7 @@ public class Operation {
 
     /**
      * метод удаляет пользователя
+     *
      * @param user - пользователь
      */
     public void deleteUser(User user) {
@@ -31,32 +33,33 @@ public class Operation {
 
     /**
      * метод добавляет счет пользователю
+     *
      * @param passport - паспорт пользователя
-     * @param account - новый счет пользователя
+     * @param account  - новый счет пользователя
      */
     public void addAccountToUser(String passport, Account account) {
-        User byPassport = findByPassport(passport);
-        if (byPassport != null) {
-            List<Account> list = this.users.get(byPassport);
-            if (!list.contains(account)) {
-                list.add(account);
-            }
+        User user = findByPassport(passport);
+        if (user != null) {
+            this.users.get(user).add(account);
         }
     }
 
-
     /**
      * метод удаляет счет пользователя
+     *
      * @param passport - паспорт пользователя
-     * @param account - счет(а) пользователя
+     * @param account  - счет(а) пользователя
      */
     public void deleteAccountFromUser(String passport, Account account) {
-        List<Account> userAccounts = users.get(findByPassport(passport));
-        userAccounts.remove(account);
+        User user = findByPassport(passport);
+        if (user != null) {
+            this.users.get(user).remove(account);
+        }
     }
 
     /**
      * метод возвращает список счетов пользователя
+     *
      * @param passport - паспорт пользователя
      * @return список счетов пользователя
      */
@@ -66,14 +69,16 @@ public class Operation {
 
     /**
      * метод переводит деньги с одного счета на другой
-     * @param srcPassport - паспорт пользователя(отправитель)
-     * @param srcRequisite - счет пользователя(отправитель)
-     * @param destPassport - паспорт пользователя(получатель)
+     *
+     * @param srcPassport   - паспорт пользователя(отправитель)
+     * @param srcRequisite  - счет пользователя(отправитель)
+     * @param destPassport  - паспорт пользователя(получатель)
      * @param destRequisite - счет пользователя(получатель)
-     * @param amount - сумма перевода
-     * @return true или false*/
+     * @param amount        - сумма перевода
+     * @return true или false
+     */
     public boolean transferMoney(String srcPassport, String srcRequisite,
-                                  String destPassport, String destRequisite, double amount) {
+                                 String destPassport, String destRequisite, double amount) {
         boolean result = false;
         if (srcPassport != null && srcRequisite != null
                 && destPassport != null && destRequisite != null && amount > 0
@@ -93,27 +98,24 @@ public class Operation {
 
     /**
      * метод возвращает нужный счет пользователя
-     * @param passport - паспорт пользователя
+     *
+     * @param passport  - паспорт пользователя
      * @param requisite - реквизиты счета пользователя
-     * @return acc - выбранный счет пользователя
+     * @return account - выбранный счет пользователя
      */
     public Account getActualAccount(String passport, String requisite) {
-        Account acc = null;
-        User byPassport = findByPassport(passport);
-        if (byPassport != null && requisite != null) {
-            List<Account> list = this.users.get(byPassport);
-            for (Account account : list) {
-                if (account.getRequisites().equals(requisite)) {
-                    acc = account;
-                    break;
-                }
-            }
+        Account account = null;
+        if (this.getUserAccounts(passport) != null) {
+            account = this.getUserAccounts(passport).stream()
+                    .filter(acc -> acc.getRequisites().equals(requisite))
+                    .findFirst().orElse(null);
         }
-        return acc;
+        return account;
     }
 
     /**
      * метод возвращает список всех пользователей
+     *
      * @return Map - коллекция всех пользователей со счетами
      */
     public Map<User, List<Account>> getUsers() {
@@ -122,17 +124,13 @@ public class Operation {
 
     /**
      * находит нужного пользователя по паспорту
+     *
      * @param passport - паспорт для поиска пользователя
      * @return user - нужный пользователь
      */
     public User findByPassport(String passport) {
-        User user = null;
-        for (User temp : users.keySet()) {
-            if (temp.getPassport().equals(passport)) {
-                user = temp;
-                break;
-            }
-        }
-        return user;
+        return this.users.keySet().stream()
+                .filter(user -> user.getPassport().equals(passport))
+                .findFirst().orElse(null);
     }
 }
