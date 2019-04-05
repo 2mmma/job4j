@@ -2,7 +2,6 @@ package ru.job4j.comparator;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -15,15 +14,15 @@ public class SortUserTest {
     public void whenListUsersSortedByAgeReturnTreeSet() {
         SortUser sortUser = new SortUser();
 
-        List<User> users = new ArrayList<>();
-        users.add(new User("Jack", 55));
-        users.add(new User("Ivan", 35));
-        users.add(new User("Petr", 40));
+        List<User> users = List.of(
+                new User("Jack", 55),
+                new User("Ivan", 35),
+                new User("Petr", 40));
 
-        List<User> except = new ArrayList<>();
-        except.add(new User("Ivan", 35));
-        except.add(new User("Petr", 40));
-        except.add(new User("Jack", 55));
+        List<User> except = List.of(
+                new User("Ivan", 35),
+                new User("Petr", 40),
+                new User("Jack", 55));
 
         Set<User> userSet = sortUser.sort(users);
         assertThat(userSet.toString(), is(except.toString()));
@@ -33,17 +32,17 @@ public class SortUserTest {
     public void whenListUsersSortedByNameLengthReturnList() {
         SortUser sortUser = new SortUser();
 
-        List<User> users = new ArrayList<>();
-        users.add(new User("Jack", 55));
-        users.add(new User("Ivan", 35));
-        users.add(new User("Petrov", 40));
-        users.add(new User("Bob", 15));
+        List<User> users = List.of(
+                new User("Jack", 55),
+                new User("Ivan", 35),
+                new User("Petrov", 40),
+                new User("Bob", 15));
 
-        List<User> except = new ArrayList<>();
-        except.add(new User("Bob", 15));
-        except.add(new User("Jack", 55));
-        except.add(new User("Ivan", 35));
-        except.add(new User("Petrov", 40));
+        List<User> except = List.of(
+                new User("Bob", 15),
+                new User("Jack", 55),
+                new User("Ivan", 35),
+                new User("Petrov", 40));
 
         List<User> userSet = sortUser.sortNameLength(users);
         assertThat(userSet.toString(), is(except.toString()));
@@ -53,21 +52,21 @@ public class SortUserTest {
     public void whenListUsersSortedByNameAndAgeReturnList() {
         SortUser sortUser = new SortUser();
 
-        List<User> users = new ArrayList<>();
-        users.add(new User("Jack", 55));
-        users.add(new User("Ivan", 35));
-        users.add(new User("Bob", 20));
-        users.add(new User("Petrov", 40));
-        users.add(new User("Bob", 15));
-        users.add(new User("Ivan", 18));
+        List<User> users = List.of(
+                new User("Jack", 55),
+                new User("Ivan", 35),
+                new User("Bob", 20),
+                new User("Petrov", 40),
+                new User("Bob", 15),
+                new User("Ivan", 18));
 
-        List<User> except = new ArrayList<>();
-        except.add(new User("Bob", 15));
-        except.add(new User("Bob", 20));
-        except.add(new User("Ivan", 18));
-        except.add(new User("Ivan", 35));
-        except.add(new User("Jack", 55));
-        except.add(new User("Petrov", 40));
+        List<User> except = List.of(
+                new User("Bob", 15),
+                new User("Bob", 20),
+                new User("Ivan", 18),
+                new User("Ivan", 35),
+                new User("Jack", 55),
+                new User("Petrov", 40));
 
         List<User> userSet = sortUser.sortByAllFields(users);
         assertThat(userSet.toString(), is(except.toString()));
