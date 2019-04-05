@@ -24,7 +24,10 @@ public class TrackerTest {
         tracker.add(item1);
         tracker.add(item2);
         tracker.delete(item2.getId());
-        assertThat(tracker.findAll(), is(Collections.singletonList(item1)));
+        List<Item> result = tracker.findAll();
+        List<Item> except = new ArrayList<>();
+        except.add(item1);
+        assertThat(result, is(except));
     }
 
     @Test
