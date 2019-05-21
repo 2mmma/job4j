@@ -51,15 +51,16 @@ public class UserConvert {
 
     /**
      * метод преобразует список имен в новые объекты класса User
+     *
      * @param names - список имен
-     * @param op  - интерфейс
+     * @param op    - интерфейс
      * @return users - список новых пользователей
      */
     public List<User> convert(List<String> names, Function<String, User> op) {
         List<User> users = new ArrayList<>();
         final StringBuilder last = new StringBuilder();
         names.forEach(
-                n ->  {
+                n -> {
                     last.ensureCapacity(0);
                     last.append(n);
                 }
@@ -70,17 +71,40 @@ public class UserConvert {
     public static void badMethod() throws Exception {
     }
 
-    public static interface Wrapper<T> {
+    public interface Wrapper<T> {
         T get();
+
         void set(T value);
+
         boolean isEmpty();
+    }
+
+    public static class ExpHold<T> implements Wrapper<T> {
+
+        private T value;
+
+
+        @Override
+        public T get() {
+            return this.value;
+        }
+
+        @Override
+        public void set(T value) {
+            this.value = value;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return this.value == null;
+        }
     }
 
     public static void main(String[] args) throws Exception {
         List<String> names = Arrays.asList("Petr", "Nick", "Ban");
-        Wrapper<Exception> ex = null;
+        Wrapper<Exception> ex = new ExpHold<>();
         names.forEach(
-                n ->  {
+                n -> {
                     try {
                         badMethod();
                     } catch (Exception e) {
@@ -88,7 +112,7 @@ public class UserConvert {
                     }
                 }
         );
-        if (ex != null && !ex.isEmpty()) {
+        if (!ex.isEmpty()) {
             throw ex.get();
         }
     }
