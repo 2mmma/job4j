@@ -8,7 +8,7 @@ import java.util.Arrays;
  */
 public class Machine {
 
-    private final int[] coins = {10, 5, 2, 1};
+    private static final int[] COINS = {10, 5, 2, 1};
 
     /**
      * метод отсчитывает сдачу исходя от депозита и стоимости товара
@@ -20,7 +20,7 @@ public class Machine {
         int[] rsl = new int[100];
         int size = 0;
         int change = money - price;
-        for (int coin : coins) {
+        for (int coin : COINS) {
             while (change >= coin) {
                 change = change - coin;
                 rsl[size++] = coin;
