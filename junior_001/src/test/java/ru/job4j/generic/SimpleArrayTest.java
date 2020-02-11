@@ -27,9 +27,8 @@ public class SimpleArrayTest {
         simpleArray.add(3);
         simpleArray.set(1, 4);
         assertThat(simpleArray.get(1), is(4));
-        simpleArray.set(5, 6);
-        assertNull(simpleArray.get(5));
-        assertThat(simpleArray.get(3), is(6));
+        simpleArray.set(2, 6);
+        assertThat(simpleArray.get(2), is(6));
     }
 
     @Test
@@ -45,9 +44,6 @@ public class SimpleArrayTest {
         assertNull(simpleArray.get(3));
         simpleArray.set(0, "wolf");
         assertThat(simpleArray.get(0), is("wolf"));
-        simpleArray.set(5, "bear");
-        assertNull(simpleArray.get(5));
-        assertThat(simpleArray.get(3), is("bear"));
     }
 
 }

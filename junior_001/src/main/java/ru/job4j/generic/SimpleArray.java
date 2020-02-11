@@ -21,21 +21,13 @@ public class SimpleArray<T> implements Iterable {
     }
 
     public void set(int index, T model) {
-        if (iterator().hasNext()) {
-            if (array[index] != null) {
-                array[index] = model;
-            } else {
-                while (array[index - 1] == null) {
-                    index--;
-                }
-                array[index] = model;
-                System.out.printf("Object added under index:%d\n", index);
-            }
+        if (array[index] != null) {
+            array[index] = model;
         }
     }
 
     public void remove(int index) {
-        if (iterator().hasNext()) {
+        if (this.array.length - 1 - index >= 0) {
             System.arraycopy(this.array, index + 1, this.array, index, this.array.length - 1 - index);
         }
         this.array[this.array.length - 1] = null;
@@ -47,7 +39,7 @@ public class SimpleArray<T> implements Iterable {
     }
 
     @Override
-    public Iterator<Object> iterator() {
+    public Iterator<T> iterator() {
         return new Iterator<>() {
             private int count = 0;
 
@@ -56,12 +48,13 @@ public class SimpleArray<T> implements Iterable {
                 return count < index;
             }
 
+            @SuppressWarnings("unchecked")
             @Override
-            public Object next() {
+            public T next() {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                return array[count++];
+                return (T) array[count++];
             }
         };
     }
