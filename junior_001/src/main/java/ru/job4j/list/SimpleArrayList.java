@@ -24,9 +24,16 @@ public class SimpleArrayList<E> {
      * Метод удаления первого элемент в списке.
      */
     public E delete() {
-        this.first = this.first.next;
-        size--;
-        return this.first.data;
+        if (size == 0) {
+            throw new IllegalArgumentException("List is empty");
+        } else {
+            this.first = this.first.next;
+            size--;
+            if (size == 0) {
+                throw new IllegalArgumentException("All objects are deleted. List is empty");
+            }
+            return this.first.data;
+        }
     }
 
     /**
