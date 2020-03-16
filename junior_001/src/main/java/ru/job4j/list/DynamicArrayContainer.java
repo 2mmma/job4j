@@ -24,11 +24,15 @@ public class DynamicArrayContainer<E> implements Iterable {
     }
 
     public void add(E value) {
+        resize();
+        array[arrayIndex++] = value;
+        modCount++;
+    }
+
+    public void resize() {
         if (arrayIndex == this.array.length) {
             this.array = Arrays.copyOf(this.array, this.array.length + array.length);
         }
-        array[arrayIndex++] = value;
-        modCount++;
     }
 
     @Override
