@@ -16,6 +16,8 @@ public class DynamicLinkedListContainer<E> implements Iterable {
 
     /**
      * Метод вставляет в начало списка данные.
+     *
+     * @param value - элемент для вставки
      */
     public void add(E value) {
         Node<E> newLink = new Node<>(value);
@@ -27,6 +29,9 @@ public class DynamicLinkedListContainer<E> implements Iterable {
 
     /**
      * Метод получения элемента по индексу.
+     *
+     * @param index индекс элемента;
+     * @return - элемент по индексу
      */
     public E get(int index) {
         Node<E> result = this.first;
@@ -34,6 +39,18 @@ public class DynamicLinkedListContainer<E> implements Iterable {
             result = result.next;
         }
         return result.data;
+    }
+
+    /**
+     * Метод удаляет последний добавленный элемент.
+     */
+    public void deleteLast() {
+        this.first = this.first.next;
+        size--;
+    }
+
+    int getSize() {
+        return this.size;
     }
 
     /**
