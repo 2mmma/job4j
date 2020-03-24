@@ -69,6 +69,7 @@ public class DynamicLinkedListContainer<E> implements Iterable {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<>() {
+            private Node<E> item = first;
             private int currentIndex = 0;
             private final int expectedModCount = modCount;
 
@@ -85,8 +86,11 @@ public class DynamicLinkedListContainer<E> implements Iterable {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
+                Node<E> temp;
+                temp = item;
+                item = temp.next;
                 currentIndex++;
-                return (E) first.next;
+                return temp.data;
             }
         };
     }
