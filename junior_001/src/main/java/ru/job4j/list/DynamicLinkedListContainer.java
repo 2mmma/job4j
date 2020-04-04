@@ -42,11 +42,13 @@ public class DynamicLinkedListContainer<E> implements Iterable {
     }
 
     /**
-     * Метод удаляет последний добавленный элемент.
+     * Метод удаляет и возвращает последний добавленный элемент.
      */
-    public void deleteLast() {
+    public E deleteLast() {
+        Node<E> result = this.first;
         this.first = this.first.next;
         size--;
+        return result.data;
     }
 
     int getSize() {

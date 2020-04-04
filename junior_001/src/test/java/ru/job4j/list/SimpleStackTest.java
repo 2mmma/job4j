@@ -1,9 +1,10 @@
 package ru.job4j.list;
 
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.Matchers.is;
-
 import org.junit.Test;
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class SimpleStackTest {
 
@@ -24,11 +25,18 @@ public class SimpleStackTest {
     }
 
     @Test
-    public void whenPushPushThenPollPoll() {
+    public void whenExceptionTest() {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.push(1);
         stack.push(2);
-        stack.poll();
+        assertThat(stack.poll(), is(2));
         assertThat(stack.poll(), is(1));
+        boolean wasError = false;
+        try {
+            stack.poll();
+        } catch (IllegalArgumentException iae) {
+            wasError = true;
+        }
+        assertTrue(wasError);
     }
 }

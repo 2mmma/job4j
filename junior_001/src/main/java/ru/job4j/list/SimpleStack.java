@@ -12,11 +12,8 @@ public class SimpleStack<T> {
     public T poll() {
         if (linked.getSize() == 0) {
             throw new IllegalArgumentException("Stack is empty");
-        } else {
-            T result = linked.get(0);
-            linked.deleteLast();
-            return result;
         }
+        return linked.deleteLast();
     }
 
     /**
