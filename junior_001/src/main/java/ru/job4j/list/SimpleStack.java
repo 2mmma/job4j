@@ -1,5 +1,9 @@
 package ru.job4j.list;
 
+/**
+ * @author tumen.garmazhapov (gtb-85@yandex.ru)
+ * @since 04.2020
+ */
 public class SimpleStack<T> {
 
     private DynamicLinkedListContainer<T> linked = new DynamicLinkedListContainer<>();
@@ -23,5 +27,9 @@ public class SimpleStack<T> {
      */
     public void push(T value) {
         linked.add(value);
+    }
+
+    boolean isEmpty() {
+        return linked.getSize() == 0;
     }
 }
