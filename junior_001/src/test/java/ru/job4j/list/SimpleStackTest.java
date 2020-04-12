@@ -24,19 +24,13 @@ public class SimpleStackTest {
         assertThat(stack.poll(), is(2));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void whenExceptionTest() {
         SimpleStack<Integer> stack = new SimpleStack<>();
         stack.push(1);
         stack.push(2);
         assertThat(stack.poll(), is(2));
         assertThat(stack.poll(), is(1));
-        boolean wasError = false;
-        try {
-            stack.poll();
-        } catch (IllegalArgumentException iae) {
-            wasError = true;
-        }
-        assertTrue(wasError);
+        stack.poll();
     }
 }

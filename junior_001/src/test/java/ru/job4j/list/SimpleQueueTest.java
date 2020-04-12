@@ -18,17 +18,11 @@ public class SimpleQueueTest {
         assertThat(queue.poll(), is(3));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void whenExceptionTest() {
         SimpleQueue<Integer> queue = new SimpleQueue<>();
         queue.push(1);
         assertThat(queue.poll(), is(1));
-        boolean wasError = false;
-        try {
-            queue.poll();
-        } catch (IllegalArgumentException iae) {
-            wasError = true;
-        }
-        assertTrue(wasError);
+        queue.poll();
     }
 }
