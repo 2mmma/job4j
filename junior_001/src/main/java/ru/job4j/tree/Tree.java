@@ -12,7 +12,7 @@ class Tree<E> implements SimpleTree<E> {
     @Override
     public boolean add(E parent, E child) {
         boolean rsl = false;
-        if (findBy(child).isEmpty() && findBy(parent).isPresent()) {
+        if (findBy(child).isEmpty()) {
             findBy(parent).get().children.add(new Node<>(child));
             rsl = true;
         }
