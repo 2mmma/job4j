@@ -114,7 +114,7 @@ public class HashMap<K, V> implements Iterable<HashMap.Entry<K, V>> {
     public V get(K key) {
         V result = null;
         int cell = hash(key);
-        if (cell < table.length && table[cell] != null) {
+        if (table[cell] != null) {
             Entry<K, V> bucket = (Entry<K, V>) table[cell];
             if (Objects.equals(bucket.key, key)) {
                 result = bucket.value;
@@ -133,7 +133,7 @@ public class HashMap<K, V> implements Iterable<HashMap.Entry<K, V>> {
     public boolean delete(K key) {
         int cell = hash(key);
         boolean result = false;
-        if (cell < table.length && table[cell] != null) {
+        if (table[cell] != null) {
             Entry<K, V> bucket = (Entry<K, V>) table[cell];
             if (Objects.equals(bucket.key, key)) {
                 table[cell] = null;
