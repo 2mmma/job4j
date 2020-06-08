@@ -27,10 +27,11 @@ public class HashMapTest {
     }
 
     @Test
-    public void whenInsertDuplicate() {
+    public void whenInsertNewElementWithEqualHash() {
         assertTrue(map.insert("A", 1));
-        assertFalse(map.insert("A", 1));
+        assertTrue(map.insert("A", 2));
         assertThat(map.size(), is(1));
+        assertThat(map.get("A"), is(2));
     }
 
 

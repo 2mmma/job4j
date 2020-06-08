@@ -90,18 +90,16 @@ public class HashMap<K, V> implements Iterable<HashMap.Entry<K, V>> {
      *
      * @param key   Ключ.
      * @param value Значение.
-     * @return true/false.
+     * @return true.
      */
     public boolean insert(K key, V value) {
-        boolean result = false;
         int cell = hash(key);
         if (table[cell] == null) {
-            table[cell] = new Entry<>(key, value);
-            result = true;
             size++;
             checkResize();
         }
-        return result;
+        table[cell] = new Entry<>(key, value);
+        return true;
     }
 
     /**
@@ -247,7 +245,7 @@ public class HashMap<K, V> implements Iterable<HashMap.Entry<K, V>> {
             /**
              * Возвращаем пару ключ-значение.
              *
-             * @return Entry<K ,   V>.
+             * @return Entry<K   ,       V>.
              * @throws NoSuchElementException если следующего
              * элемента для возврата нет.
              */
