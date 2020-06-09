@@ -86,20 +86,28 @@ public class HashMap<K, V> implements Iterable<HashMap.Entry<K, V>> {
     /**
      * Метод добавляет пару ключ-значение в массив table,
      * позиция для добавления высчитываеться по хешкоду.
-     * Если ячейка не пуста,значение не перезаписывается.
+     * Если ячейка не пуста,значение перезаписывается на новое значение.
      *
      * @param key   Ключ.
      * @param value Значение.
      * @return true.
      */
+    @SuppressWarnings("unchecked")
     public boolean insert(K key, V value) {
         int cell = hash(key);
+        boolean result = false;
         if (table[cell] == null) {
+            table[cell] = new Entry<>(key, value);
             size++;
             checkResize();
+            result = true;
         }
-        table[cell] = new Entry<>(key, value);
-        return true;
+        if (table[cell] != null) {
+            Entry<K, V> bucket = (Entry<K, V>) table[cell];
+            bucket.value = value;
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -245,7 +253,7 @@ public class HashMap<K, V> implements Iterable<HashMap.Entry<K, V>> {
             /**
              * Возвращаем пару ключ-значение.
              *
-             * @return Entry<K   ,       V>.
+             * @return Entry<K               ,                               V>.
              * @throws NoSuchElementException если следующего
              * элемента для возврата нет.
              */
