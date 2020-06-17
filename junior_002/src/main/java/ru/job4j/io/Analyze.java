@@ -1,12 +1,18 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.util.*;
 
 /**
  * @author tumen.garmazhapov (gtb-85@yandex.ru)
  * @since 06.2019
  */
 public class Analyze {
+
+    /**
+     * Список для хранения загруженных данных
+     */
+    private final List<String> values = new ArrayList<>();
 
     /**
      * метод анализирует лог событий сервера
@@ -18,8 +24,7 @@ public class Analyze {
      */
     public void unavailable(String source, String target) {
         StringBuilder result = new StringBuilder();
-        try (BufferedReader reader = new BufferedReader(new FileReader(source));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(target))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(source))) {
             String str = reader.readLine();
             boolean cursor = true;
             String date = "";
@@ -37,7 +42,14 @@ public class Analyze {
                 }
                 str = reader.readLine();
             }
-            writer.write(result.toString());
+            values.add(String.valueOf(result));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        try (FileWriter writer = new FileWriter(target)) {
+            writer.write(String.valueOf(values)
+                    .replace("[", "")
+                    .replace("]", ""));
             writer.flush();
         } catch (IOException e) {
             e.printStackTrace();

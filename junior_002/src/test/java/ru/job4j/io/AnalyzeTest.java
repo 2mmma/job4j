@@ -43,8 +43,6 @@ public class AnalyzeTest {
                     + "400 10:58:01\n"
                     + "200 10:59:01";
             writer.write(text);
-            writer.append("\n");
-            writer.append("E");
             writer.flush();
             analyze.unavailable(source.getAbsolutePath(), target.getAbsolutePath());
             try (BufferedReader reader = new BufferedReader(new FileReader(target))) {
