@@ -24,4 +24,21 @@ public class Search {
         Files.walkFileTree(root, searchFiles);
         return searchFiles.getPaths();
     }
+
+    /***
+     * method returns list of file paths only without a specific predicate
+     *
+     * @param root directory to be bypassed
+     * @param ext predicate
+     * @return file path list
+     */
+    public static List<Path> fileFilter(Path root, String ext) {
+        SearchFiles searchFiles = new SearchFiles((p -> !p.toFile().getName().endsWith(ext)));
+        try {
+            Files.walkFileTree(root, searchFiles);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return searchFiles.getPaths();
+    }
 }
