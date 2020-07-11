@@ -16,20 +16,26 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    String str;
-                    //noinspection CheckStyle
-                    while (!(str = in.readLine()).isEmpty()) {
-                        if (!str.contains("BYE")) {
-                            System.out.println(str);
-                        } else {
-                            System.out.println("DISCONNECTED");
-                            check = false;
-                        }
-                    }
-                    out.write("HTTP/1.1 200 OK\r\n\\".getBytes());
+                    String str = in.readLine();
+                    if (!str.isEmpty()) {
+                        String[] line = str.split(" ");
+                        int index = line[1].lastIndexOf('=');
+                        String argument = line[1].substring(index + 1);
+                        String answer;
+                        if (argument.equals("Exit")) {
+                            answer = "Disconnected";
 
+                            check = false;
+                        } else {
+                            answer = argument;
+                        }
+                        out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                        out.write((answer + "\r\n\r\n").getBytes());
+                        System.out.println(answer);
+                    }
                 }
             }
         }
     }
 }
+
