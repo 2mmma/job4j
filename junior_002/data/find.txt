@@ -1,0 +1,3 @@
+C:\projects\job4j\junior_002\data\consoleChat.txt
+C:\projects\job4j\junior_002\data\find.txt
+C:\projects\job4j\junior_002\data\log.txt
